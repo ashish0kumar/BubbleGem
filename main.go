@@ -10,6 +10,7 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/fatih/color"
 	"github.com/google/generative-ai-go/genai"
 	"google.golang.org/api/option"
 )
@@ -34,7 +35,7 @@ type Model struct {
 
 func NewModel() Model {
 	ti := textinput.New()
-	ti.Placeholder = "Ask Gemini something..."
+	ti.Placeholder = "Ask GemGo something..."
 	ti.Focus()
 
 	vp := viewport.New(80, 20)
@@ -79,7 +80,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case GeminiResponseMsg:
 		if msg.Err != nil {
 			m.err = msg.Err
-			m.responses = []string{fmt.Sprintf("Error: %v", msg.Err)}
+			m.responses = []string{color.New(color.FgRed).Sprintf("Error: %v", msg.Err)}
 		} else {
 			m.responses = []string{fmt.Sprintf(msg.Response)}
 		}
