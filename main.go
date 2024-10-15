@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/charmbracelet/bubbles/viewport"
@@ -31,6 +32,9 @@ type Model struct {
 	width     int
 	height    int
 	ready     bool
+	loading   bool
+	frames    []string
+	frame     int
 }
 
 func NewModel() Model {
@@ -45,6 +49,9 @@ func NewModel() Model {
 		textinput: ti,
 		viewport:  vp,
 		responses: []string{},
+		loading:   false,
+		frames:    []string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"},
+		frame:     0,
 	}
 }
 
@@ -64,7 +71,9 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case tea.KeyEnter:
 			query := m.textinput.Value()
 			m.textinput.SetValue("")
-			return m, handleGeminiQuery(query)
+			m.loading = true
+			return m, tea.Batch(handleGeminiQuery(query), animateLoading())
+
 		case tea.KeyCtrlC, tea.KeyEsc:
 			return m, tea.Quit
 		}
@@ -78,6 +87,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.ready = true
 
 	case GeminiResponseMsg:
+		m.loading = false
 		if msg.Err != nil {
 			m.err = msg.Err
 			m.responses = []string{color.New(color.FgRed).Sprintf("Error: %v", msg.Err)}
@@ -85,6 +95,13 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.responses = []string{fmt.Sprintf(msg.Response)}
 		}
 		m.updateViewportContent()
+
+	case animationTickMsg:
+		if m.loading {
+			m.frame = (m.frame + 1) % len(m.frames)
+			m.updateViewportContent()
+			return m, animateLoading()
+		}
 	}
 
 	m.textinput, cmd = m.textinput.Update(msg)
@@ -98,13 +115,16 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m *Model) updateViewportContent() {
 	content := strings.Join(m.responses, "\n\n")
+	if m.loading {
+		content += fmt.Sprintf("\nJust a Moment %s", m.frames[m.frame])
+	}
 	m.viewport.SetContent(content)
 	m.viewport.GotoBottom()
 }
 
 func (m Model) View() string {
 	if !m.ready {
-		return "Loading..."
+		return "Just a Moment..."
 	}
 
 	return fmt.Sprintf(
@@ -117,6 +137,14 @@ func (m Model) View() string {
 type GeminiResponseMsg struct {
 	Response string
 	Err      error
+}
+
+type animationTickMsg struct{}
+
+func animateLoading() tea.Cmd {
+	return tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
+		return animationTickMsg{}
+	})
 }
 
 func handleGeminiQuery(query string) tea.Cmd {
