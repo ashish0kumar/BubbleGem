@@ -1,15 +1,15 @@
 # ♊ GemGo
 
-GemGo is a command-line interface (CLI) for [Google Gemini](https://gemini.google.com/app), built using the [Bubble Tea framework](https://github.com/charmbracelet/bubbletea) in Go. 
-With GemGo, you can ask questions and interact with the Gemini AI in your terminal environment.
+*GemGo* is a command-line interface (CLI) for [Google Gemini](https://gemini.google.com/app), built using the [Bubble Tea framework](https://github.com/charmbracelet/bubbletea) in Go. <br>
+With *GemGo*, you can ask questions and interact with the Gemini AI in your terminal environment.
 
-## Features
+## ✨ Features
 
 - **Command-line interface**: Interact with Gemini AI from your terminal.
 - **Bubble Tea framework**: Uses the Bubble Tea TUI framework for a responsive and clean user experience.
 - **Loading animation**: Animated loading indicator while waiting for the AI response.
 
-## Installation
+## 🛠️ Installation
 
 ### Prerequisites
 
@@ -25,7 +25,7 @@ git clone https://github.com/ashish0kumar/GemGo.git
 cd GemGo
 ```
 
-2. To use `GemGo`, you'll need an API key set in the `GEMINI_API_KEY` environment variable. If you don't already have one, create a key in [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. To use `gemgo`, you'll need an API key set in the `GEMINI_API_KEY` environment variable. If you don't already have one, create a key in [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 4. Set the `GEMINI_API_KEY` environment variable with your API key:
 
@@ -44,24 +44,76 @@ cd GemGo
 3. Build and run the application:
 
 ```bash
-go build
-./GemGo
+go build -o gemgo
+./gemgo
 ```
 
-## Usage
+#### Configure Global CLI Access
+
+To run `gemgo` from anywhere in your terminal, follow these steps:
+
+**For Linux/macOS:**
+
+1. Move the binary to `/usr/local/bin`:
+
+```bash
+sudo mv gemgo /usr/local/bin/
+```
+
+2. Ensure `/usr/local/bin` is in your `$PATH`:
+
+Add the following line to your `~/.bashrc`, `~/.zshrc`, or appropriate shell config file if not already present:
+
+```bash
+export PATH="/usr/local/bin:$PATH"
+```
+
+3. Reload your shell configuration:
+
+```bash
+source ~/.bashrc  # or ~/.zshrc for zsh users
+```
+
+**For Windows:**
+
+1. Move the binary to a directory included in your system's `PATH`. You can create a directory like `C:\CLI-tools` and add it to the `PATH`:
+- Open **Control Panel > System and Security > System > Advanced system settings > Environment Variables**.
+- Under **System variables**, find the `Path` variable, select it, and click Edit.
+- Click **New**, and add the `path` where you moved the `gemgo.exe` binary (e.g., `C:\CLI-tools`).
+- Click **OK** to save the changes.
+
+2. Move the `gemgo.exe` binary to this directory:
+
+```powershell
+move gemgo.exe C:\CLI-tools
+```
+    
+
+After this, you can access `gemgo` globally from any terminal window.
+
+#### Running the Application
+
+Once globally installed, you can run `gemgo` by typing:
+
+```bash
+gemgo
+```
+
+## 🔧 Usage
 
 Once you run the CLI, you can start typing questions. To submit a query, press Enter. To exit, press `Ctrl+C` or `Esc`.
 
 
-## Dependencies
+## 📦 Dependencies
 
+- [Go SDK for Google Generative AI](https://github.com/google/generative-ai-go/)
 - [Charm's Bubble Tea](https://github.com/charmbracelet/bubbletea)
 - [Fatih Color](https://github.com/fatih/color)
 
-## Contributing
+## 🤝 Contributing
 
 Feel free to open issues and contribute to this project. All contributions are welcome!
 
-## License
+## 📜 License
 
 This project is licensed under the MIT License.
