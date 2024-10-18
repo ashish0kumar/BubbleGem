@@ -3,6 +3,8 @@
 *GemGo* is a command-line interface (CLI) for [Google Gemini](https://gemini.google.com/app), built using the [Bubble Tea framework](https://github.com/charmbracelet/bubbletea) in Go. <br>
 With *GemGo*, you can ask questions and interact with the Gemini AI in your terminal environment.
 
+![ss](assets/ss.png)
+
 ## ✨ Features
 
 - **Command-line interface**: Interact with Gemini AI from your terminal.
@@ -48,7 +50,7 @@ go build -o gemgo
 ./gemgo
 ```
 
-#### Configure Global CLI Access
+### Configure Global CLI Access
 
 To run `gemgo` from anywhere in your terminal, follow these steps:
 
@@ -77,6 +79,7 @@ source ~/.bashrc  # or ~/.zshrc for zsh users
 **For Windows:**
 
 1. Move the binary to a directory included in your system's `PATH`. You can create a directory like `C:\CLI-tools` and add it to the `PATH`:
+
 - Open **Control Panel > System and Security > System > Advanced system settings > Environment Variables**.
 - Under **System variables**, find the `Path` variable, select it, and click Edit.
 - Click **New**, and add the `path` where you moved the `gemgo.exe` binary (e.g., `C:\CLI-tools`).
