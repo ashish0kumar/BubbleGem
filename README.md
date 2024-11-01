@@ -1,7 +1,7 @@
-# ♊ GemGo
+# 🧼 BubbleGem
 
-*GemGo* is a command-line interface (CLI) for [Google Gemini](https://gemini.google.com/app), built using the [Bubble Tea framework](https://github.com/charmbracelet/bubbletea) in Go. <br>
-With *GemGo*, you can ask questions and interact with the Gemini AI in your terminal environment.
+BubbleGem is a command-line interface (CLI) for [Google Gemini](https://gemini.google.com/app), built using the [Bubble Tea framework](https://github.com/charmbracelet/bubbletea) in Go. <br>
+With BubbleGem, you can ask questions and interact with the Gemini AI in your terminal environment.
 
 ![ss](assets/ss.png)
 
@@ -23,11 +23,11 @@ With *GemGo*, you can ask questions and interact with the Gemini AI in your term
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/ashish0kumar/GemGo.git
-cd GemGo
+git clone https://github.com/ashish0kumar/BubbleGem.git
+cd BubbleGem
 ```
 
-2. To use `gemgo`, you'll need an API key set in the `GEMINI_API_KEY` environment variable. If you don't already have one, create a key in [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. To use `bubblegem`, you'll need an API key set in the `GEMINI_API_KEY` environment variable. If you don't already have one, create a key in [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 4. Set the `GEMINI_API_KEY` environment variable with your API key:
 
@@ -46,20 +46,20 @@ cd GemGo
 3. Build and run the application:
 
 ```bash
-go build -o gemgo
-./gemgo
+go build
+./bubblegem
 ```
 
 ### Configure Global CLI Access
 
-To run `gemgo` from anywhere in your terminal, follow these steps:
+To run `bubblegem` from anywhere in your terminal, follow these steps:
 
 **For Linux/macOS:**
 
 1. Move the binary to `/usr/local/bin`:
 
 ```bash
-sudo mv gemgo /usr/local/bin/
+sudo mv bubblegem /usr/local/bin/
 ```
 
 2. Ensure `/usr/local/bin` is in your `$PATH`:
@@ -85,21 +85,21 @@ source ~/.bashrc  # or ~/.zshrc for zsh users
 - Click **New**, and add the `path` where you moved the `gemgo.exe` binary (e.g., `C:\CLI-tools`).
 - Click **OK** to save the changes.
 
-2. Move the `gemgo.exe` binary to this directory:
+2. Move the `bubblegem.exe` binary to this directory:
 
 ```powershell
-move gemgo.exe C:\CLI-tools
+move bubblegem.exe C:\CLI-tools
 ```
     
 
-After this, you can access `gemgo` globally from any terminal window.
+After this, you can access `bubblegem` globally from any terminal window.
 
 #### Running the Application
 
-Once globally installed, you can run `gemgo` by typing:
+Once globally installed, you can run `bubblegem` by typing:
 
 ```bash
-gemgo
+bubblegem
 ```
 
 ## 🔧 Usage
