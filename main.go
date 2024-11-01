@@ -39,7 +39,7 @@ type Model struct {
 
 func NewModel() Model {
 	ti := textinput.New()
-	ti.Placeholder = "Ask GemGo something..."
+	ti.Placeholder = "Ask BubbleGem something..."
 	ti.Focus()
 
 	vp := viewport.New(80, 20)

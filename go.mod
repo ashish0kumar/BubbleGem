@@ -1,4 +1,4 @@
-module GemGo
+module bubblegem
 
 go 1.23.2
 
